@@ -1,28 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "demo-app.fullname" . }}
-  labels: {{- include "demo-app.labels" . | nindent 4 }}
+  name: demo-app
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
-    matchLabels: {{- include "demo-app.selectorLabels" . | nindent 6 }}
+    matchLabels:
+      app: demo-app
   template:
     metadata:
-      labels: {{- include "demo-app.selectorLabels" . | nindent 8 }}
+      labels:
+        app: demo-app
     spec:
       containers:
         - name: demo-app
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 5000
-              name: http
-          readinessProbe:
-            httpGet: { path: "/", port: http }
-            initialDelaySeconds: 3
-            periodSeconds: 5
-          livenessProbe:
-            httpGet: { path: "/", port: http }
-            initialDelaySeconds: 10
-            periodSeconds: 10

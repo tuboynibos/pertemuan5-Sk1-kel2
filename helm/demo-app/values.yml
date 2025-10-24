@@ -1,15 +1,10 @@
 replicaCount: 1
 
 image:
-  repository: tuboy/demo-app   # <--- ganti
-  tag: "latest"
+  repository: tuboy/demo-app
+  tag: latest
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 5000
-
-resources: {}
-nodeSelector: {}
-tolerations: []
-affinity: {}
