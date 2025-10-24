@@ -1,0 +1,15 @@
+replicaCount: 1
+
+image:
+  repository: tuboy/demo-app   # <--- ganti
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5000
+
+resources: {}
+nodeSelector: {}
+tolerations: []
+affinity: {}
